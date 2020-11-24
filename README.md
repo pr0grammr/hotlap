@@ -1,16 +1,15 @@
 # Hotlap
 
-**TODO: Add description**
+Calculates the delta of 2 laptimes
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `hotlap` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `hotlap` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:hotlap, "~> 0.1.0"}
+    {:hotlap, "~> 1.0.0"}
   ]
 end
 ```
