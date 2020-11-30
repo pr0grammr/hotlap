@@ -9,9 +9,9 @@ defmodule Hotlap do
   compares 2 laptime structs and returns a Hotlap.Delta struct
 
   ## Examples
-      iex> target_laptime = Hotlap.Laptime.create("01:22.344")
-      iex> current_laptime = Hotlap.Laptime.create("01:22.600")
-      iex> delta = Hotlap.compare(target_laptime, current_laptime)
+      iex> {:ok, target_laptime} = Hotlap.Laptime.create("01:22.344")
+      iex> {:ok, current_laptime} = Hotlap.Laptime.create("01:22.600")
+      iex> Hotlap.compare(target_laptime, current_laptime)
       %Hotlap.Delta{minutes: 0, seconds: 0, milliseconds: 256, status: :behind}
   """
   @spec compare(laptime, laptime) :: Hotlap.Delta

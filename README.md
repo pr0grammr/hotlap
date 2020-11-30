@@ -26,7 +26,7 @@ laptime = %Hotlap.Laptime{minutes: 1, seconds: 22, milliseconds: 455}
 # => %Hotlap.Laptime{minutes: 1, seconds: 22, milliseconds: 455}
 
 # create from string
-laptime = Hotlap.Laptime.create("01:22.455")
+{:ok, laptime} = Hotlap.Laptime.create("01:22.455")
 # => %Hotlap.Laptime{minutes: 1, seconds: 22, milliseconds: 455}
 
 # convert to milliseconds
@@ -35,8 +35,8 @@ laptime_milliseconds = Hotlap.LaptimeConverter.to_milliseconds(laptime)
 
 
 # compare two laptimes
-target_laptime = Hotlap.Laptime.create("01:22.455")
-current_laptime = Hotlap.Laptime.create("01:22.899")
+{:ok, target_laptime} = Hotlap.Laptime.create("01:22.455")
+{:ok, current_laptime} = Hotlap.Laptime.create("01:22.899")
 delta = Hotlap.compare(target_laptime, current_laptime)
 # => %Hotlap.Delta{minutes: 0, seconds: 0, milliseconds: 455, status: :behind}
 

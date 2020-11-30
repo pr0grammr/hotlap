@@ -14,7 +14,7 @@ defmodule Hotlap.Laptime do
   Creates a Hotlap.Laptime struct from the following laptime format: minutes:seconds:milliseconds
 
   ## Examples
-      iex> Hotlap.Laptime.create "01:18.855"
+      iex> Hotlap.Laptime.create("01:18.855")
       {:ok, %Hotlap.Laptime{minutes: 1, seconds: 18, milliseconds: 855}}
   """
   @spec create(laptime_string) :: {atom, Hotlap.Laptime}
@@ -34,10 +34,10 @@ defmodule Hotlap.Laptime do
   Creates a Hotlap.Laptime struct from milliseconds
 
   ## Examples
-      iex> Hotlap.Laptime.create 104005
+      iex> Hotlap.Laptime.create(104005)
       {:ok, %Hotlap.Laptime{minutes: 1, seconds: 44, milliseconds: 5}}
   """
-  @spec create(laptime_milliseconds) :: {:ok, Hotlap.Laptime}
+  @spec create(laptime_milliseconds) :: {atom, Hotlap.Laptime}
   def create(laptime_milliseconds) when is_number(laptime_milliseconds) do
     laptime = Hotlap.LaptimeConverter.from_milliseconds(laptime_milliseconds)
     laptime = %Hotlap.Laptime{minutes: laptime[:minutes], seconds: laptime[:seconds], milliseconds: laptime[:milliseconds]}
@@ -53,17 +53,9 @@ defimpl String.Chars, for: Hotlap.Laptime do
   String representation of a laptime
   """
   def to_string(laptime) do
-    minutes = laptime.minutes
-    |> Integer.to_string
-    |> String.pad_leading(2, "0")
-
-    seconds = laptime.seconds
-    |> Integer.to_string
-    |> String.pad_leading(2, "0")
-
-    milliseconds = laptime.milliseconds
-    |> Integer.to_string
-    |> String.pad_leading(3, "0")
+    minutes = Hotlap.LaptimeConverter.convert_number(laptime.minutes, 2)
+    seconds = Hotlap.LaptimeConverter.convert_number(laptime.seconds, 2)
+    milliseconds = Hotlap.LaptimeConverter.convert_number(laptime.milliseconds, 3)
 
     "#{minutes}:#{seconds}.#{milliseconds}"
   end

@@ -9,6 +9,11 @@ defmodule Hotlap.LaptimeConverter do
 
   @doc """
   Converts a laptime struct into miliseconds
+
+  ## Examples
+      iex> {:ok, laptime} = Hotlap.Laptime.create("01:32.331")
+      iex> Hotlap.LaptimeConverter.to_milliseconds(laptime)
+      92331
   """
   @spec to_milliseconds(time) :: integer
   def to_milliseconds(laptime) do
@@ -19,6 +24,10 @@ defmodule Hotlap.LaptimeConverter do
   @doc """
   converts milliseconds to a laptime map
   returned map can be used for Hotlap.Laptime and Hotlap.Delta
+
+  ## Examples
+      iex> Hotlap.LaptimeConverter.from_milliseconds(92331)
+      %{minutes: 1, seconds: 32, milliseconds: 331, status: :ahead}
   """
   @spec from_milliseconds(time) :: Hotlap.Laptime
   def from_milliseconds(laptime_milliseconds) do
@@ -34,10 +43,6 @@ defmodule Hotlap.LaptimeConverter do
       true -> Integer.to_string(laptime_milliseconds) |> String.slice(1..-1) |> String.to_integer
       false -> laptime_milliseconds
     end
-
-    minutes = 0
-    seconds = 0
-    milliseconds = 0
 
     minutes_calculated = laptime_milliseconds / 1000 / 60
     seconds_calculated = laptime_milliseconds / 1000
@@ -57,7 +62,17 @@ defmodule Hotlap.LaptimeConverter do
     # calculate remaining milliseconds
     milliseconds = laptime_milliseconds - ((minutes * 60 * 1000) + (seconds * 1000))
 
-    # create Laptime struct
+    # create laptime map
     %{minutes: minutes, seconds: seconds, milliseconds: milliseconds, status: status}
   end
+
+
+  @doc """
+  fills up a number with leading zeros
+  """
+  @spec convert_number(integer, integer) :: String.t()
+  def convert_number(number, leading_zeros) do
+    number |> Integer.to_string |> String.pad_leading(leading_zeros, "0")
+  end
+
 end

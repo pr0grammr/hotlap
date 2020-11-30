@@ -15,7 +15,9 @@ defmodule Hotlap.Delta do
   checks true if delta time is ahead the target time
 
   ## Examples
-      iex> delta = Hotlap.compare(%Hotlap.Laptime{minutes: 1, seconds: 18, milliseconds: 855}, %Hotlap.Laptime{minutes: 1, seconds: 18, milliseconds: 606})
+      iex> {:ok, target_laptime} = Hotlap.Laptime.create("01:18.855")
+      iex> {:ok, current_laptime} = Hotlap.Laptime.create("01:18.606")
+      iex> delta = Hotlap.compare(target_laptime, current_laptime)
       iex> Hotlap.Delta.is_ahead?(delta)
       true
   """
@@ -29,7 +31,9 @@ defmodule Hotlap.Delta do
   checks true if delta time is behind the target time
 
   ## Examples
-      iex> delta = Hotlap.compare(%Hotlap.Laptime{minutes: 1, seconds: 18, milliseconds: 855}, %Hotlap.Laptime{minutes: 1, seconds: 18, milliseconds: 606})
+      iex> {:ok, target_laptime} = Hotlap.Laptime.create("01:18.855")
+      iex> {:ok, current_laptime} = Hotlap.Laptime.create("01:18.606")
+      iex> delta = Hotlap.compare(target_laptime, current_laptime)
       iex> Hotlap.Delta.is_behind?(delta)
       false
   """
@@ -56,21 +60,18 @@ defimpl String.Chars, for: Hotlap.Delta do
         minutes: 0,
         seconds: 0,
         milliseconds: milliseconds
-        } -> "#{pre_symbol}0.#{convert(milliseconds, 3)}"
+        } -> "#{pre_symbol}0.#{Hotlap.LaptimeConverter.convert_number(milliseconds, 3)}"
       %Hotlap.Delta{
         minutes: 0,
         seconds: seconds,
         milliseconds: milliseconds
-        } -> "#{pre_symbol}#{seconds}.#{convert(milliseconds, 3)}"
+        } -> "#{pre_symbol}#{seconds}.#{Hotlap.LaptimeConverter.convert_number(milliseconds, 3)}"
       %Hotlap.Delta{
         minutes: minutes,
         seconds: seconds,
         milliseconds: milliseconds
-        } -> "#{pre_symbol}#{convert(minutes, 2)}:#{convert(seconds, 2)}.#{convert(milliseconds, 3)}"
+        } -> "#{pre_symbol}#{Hotlap.LaptimeConverter.convert_number(minutes, 2)}:#{Hotlap.LaptimeConverter.convert_number(seconds, 2)}.#{Hotlap.LaptimeConverter.convert_number(milliseconds, 3)}"
     end
   end
 
-  def convert(number, leading_zeros) do
-    number |> Integer.to_string |> String.pad_leading(leading_zeros, "0")
-  end
 end
