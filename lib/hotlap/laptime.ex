@@ -1,13 +1,11 @@
 defmodule Hotlap.Laptime do
 
   use Hotlap.Types
+  use Hotlap.Prototype
 
   @moduledoc """
   Documentation for Hotlap.
   """
-
-  defstruct minutes: 0, seconds: 0, milliseconds: 0
-
 
   @doc """
   Creates a Hotlap.Laptime struct from the following laptime format: minutes:seconds:milliseconds
