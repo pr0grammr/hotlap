@@ -1,10 +1,7 @@
 language: elixir
 elixir: '1.9'
 before_script:
- - echo 'Y'| mix local.rebar
- - rm -rf deps
- - rm -rf _build
- - mix deps.get
+  - mix local.rebar --force
 script:
   - MIX_ENV=test mix do compile --warnings-as-errors, coveralls.json
 
