@@ -3,7 +3,7 @@
 Calculates the delta of 2 laptimes
 
 [![Build Status](https://travis-ci.com/pr0grammr/hotlap.svg?branch=master)](https://travis-ci.com/pr0grammr/hotlap)
-<a href="https://hexdocs.pm/hotlap/1.0.0" target="_blank"><img alt="Hex.pm" src="https://img.shields.io/hexpm/dt/hotlap"></a>
+<a href="https://hexdocs.pm/hotlap/1.0.0" target="_blank"><img alt="Hex.pm" src="https://img.shields.io/hexpm/dt/hotlap?color=blue"></a>
 <a href="https://hexdocs.pm/hotlap/1.0.0" target="_blank"><img alt="Hex.pm" src="https://img.shields.io/hexpm/v/hotlap"></a>
 
 ## Installation
