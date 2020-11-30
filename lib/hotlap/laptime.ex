@@ -15,9 +15,14 @@ defmodule Hotlap.Laptime do
   """
   @type laptime_string :: String.t()
 
+  @typedoc """
+  laptime milliseconds
+  """
+  @type laptime_milliseconds :: integer
+
 
   @doc """
-  Creates a %Hotlap.Laptime struct from the following laptime format: minutes:seconds:milliseconds
+  Creates a Hotlap.Laptime struct from the following laptime format: minutes:seconds:milliseconds
 
   ## Examples
       iex> Hotlap.Laptime.create "01:18.855"
@@ -34,6 +39,22 @@ defmodule Hotlap.Laptime do
         } -> {:ok, %Hotlap.Laptime{minutes: String.to_integer(minutes), seconds: String.to_integer(seconds), milliseconds: String.to_integer(milliseconds)}}
     end
   end
+
+
+  @doc """
+  Creates a Hotlap.Laptime struct from milliseconds
+
+  ## Examples
+      iex> Hotlap.Laptime.create 104005
+      {:ok, %Hotlap.Laptime{minutes: 1, seconds: 44, milliseconds: 5}}
+  """
+  @spec create(laptime_milliseconds) :: {:ok, Hotlap.Laptime}
+  def create(laptime_milliseconds) when is_number(laptime_milliseconds) do
+    laptime = Hotlap.LaptimeConverter.from_milliseconds(laptime_milliseconds)
+    laptime = %Hotlap.Laptime{minutes: laptime[:minutes], seconds: laptime[:seconds], milliseconds: laptime[:milliseconds]}
+    {:ok, laptime}
+  end
+
 
   @doc """
   compares 2 laptime structs and returns a Hotlap.Delta struct

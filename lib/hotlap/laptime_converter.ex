@@ -23,6 +23,7 @@ defmodule Hotlap.LaptimeConverter do
     Enum.sum([laptime.minutes * 60 * 1000, laptime.seconds * 1000, laptime.milliseconds])
   end
 
+
   @doc """
   converts laptime in milliseconds to a Hotlap.Laptime struct
   """
@@ -51,6 +52,6 @@ defmodule Hotlap.LaptimeConverter do
     milliseconds = laptime_milliseconds - ((minutes * 60 * 1000) + (seconds * 1000))
 
     # create Laptime struct
-    %Hotlap.Laptime{minutes: minutes, seconds: seconds, milliseconds: milliseconds}
+    %{minutes: minutes, seconds: seconds, milliseconds: milliseconds}
   end
 end
