@@ -2,7 +2,7 @@
 
 Calculates the delta of 2 laptimes
 
-![Build & Test](https://github.com/pr0grammr/hotlap/workflows/Build%20&%20Test/badge.svg?branch=master)
+![build & test](https://github.com/pr0grammr/hotlap/workflows/build%20&%20test/badge.svg?branch=master)
 <a href="https://hexdocs.pm/hotlap/1.0.0" target="_blank"><img alt="Hex.pm" src="https://img.shields.io/hexpm/dt/hotlap?color=yellow"></a>
 <a href="https://hexdocs.pm/hotlap/1.0.0" target="_blank"><img alt="Hex.pm" src="https://img.shields.io/hexpm/v/hotlap"></a>
 
