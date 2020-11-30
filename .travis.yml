@@ -1,7 +1,7 @@
 language: elixir
 elixir: '1.9'
 before_script:
- - Y|mix local.rebar
+ - echo 'Y'| mix local.rebar
  - rm -rf deps
  - rm -rf _build
  - mix deps.get
