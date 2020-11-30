@@ -10,17 +10,31 @@ defmodule Hotlap.LaptimeConverter do
   @doc """
   Converts a laptime struct into miliseconds
   """
-  @spec to_milliseconds(laptime) :: integer
+  @spec to_milliseconds(time) :: integer
   def to_milliseconds(laptime) do
     Enum.sum([laptime.minutes * 60 * 1000, laptime.seconds * 1000, laptime.milliseconds])
   end
 
 
   @doc """
-  converts laptime in milliseconds to a Hotlap.Laptime struct
+  converts milliseconds to a laptime map
+  returned map can be used for Hotlap.Laptime and Hotlap.Delta
   """
-  @spec from_milliseconds(laptime_milliseconds) :: Hotlap.Laptime
+  @spec from_milliseconds(time) :: Hotlap.Laptime
   def from_milliseconds(laptime_milliseconds) do
+
+    # check if laptime is negative
+    status = case laptime_milliseconds < 0 do
+      true -> :behind
+      false -> :ahead
+    end
+
+    # remove sign from number to avoid wrong laptimes
+    laptime_milliseconds = case laptime_milliseconds < 0 do
+      true -> Integer.to_string(laptime_milliseconds) |> String.slice(1..-1) |> String.to_integer
+      false -> laptime_milliseconds
+    end
+
     minutes = 0
     seconds = 0
     milliseconds = 0
@@ -44,6 +58,6 @@ defmodule Hotlap.LaptimeConverter do
     milliseconds = laptime_milliseconds - ((minutes * 60 * 1000) + (seconds * 1000))
 
     # create Laptime struct
-    %{minutes: minutes, seconds: seconds, milliseconds: milliseconds}
+    %{minutes: minutes, seconds: seconds, milliseconds: milliseconds, status: status}
   end
 end

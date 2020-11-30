@@ -1,10 +1,13 @@
 defmodule Hotlap.Laptime do
 
   use Hotlap.Types
-  use Hotlap.Prototype
+
+  defstruct minutes: 0, seconds: 0, milliseconds: 0, status: nil
+
 
   @moduledoc """
-  Documentation for Hotlap.
+  Hotlap.Laptime struct
+  represents a laptime
   """
 
   @doc """
@@ -39,15 +42,6 @@ defmodule Hotlap.Laptime do
     laptime = Hotlap.LaptimeConverter.from_milliseconds(laptime_milliseconds)
     laptime = %Hotlap.Laptime{minutes: laptime[:minutes], seconds: laptime[:seconds], milliseconds: laptime[:milliseconds]}
     {:ok, laptime}
-  end
-
-
-  @doc """
-  compares 2 laptime structs and returns a Hotlap.Delta struct
-  """
-  @spec compare(laptime, laptime) :: Hotlap.Delta
-  def compare(target_laptime, current_laptime) do
-    Hotlap.LaptimeConverter.to_milliseconds(target_laptime) - Hotlap.LaptimeConverter.to_milliseconds(current_laptime)
   end
 
 end
