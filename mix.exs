@@ -15,10 +15,25 @@ defmodule Hotlap.MixProject do
       test_coverage: [tool: ExCoveralls],
       deps: deps(),
 
-      # Docs
+
       name: "Hotlap",
-      source_url: "https://github.com/pr0grammr/hotlap"
+      source_url: "https://github.com/pr0grammr/hotlap",
+      homepage_url: "https://github.com/pr0grammr/hotlap",
+      package: package(),
+      description: description()
     ]
+  end
+
+  defp package() do
+    [
+      name: "hotlap",
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/pr0grammr/hotlap"}
+    ]
+  end
+
+  defp description() do
+    "Module for calculating the delta between 2 laptimes and display it in a readable format"
   end
 
   # Run "mix help compile.app" to learn about applications.
