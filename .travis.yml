@@ -1,9 +1,6 @@
 language: elixir
 elixir: '1.9'
 
-before_script:
-  - y | mix local.rebar
-  - mix deps.update hackney
 script:
   - MIX_ENV=test mix do compile --warnings-as-errors, coveralls.json
 
