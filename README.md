@@ -2,9 +2,9 @@
 
 Calculates the delta of 2 laptimes
 
-[![Build Status](https://travis-ci.com/pr0grammr/time-ago.svg?branch=master)](https://travis-ci.com/pr0grammr/time-ago)
-<a href="https://hexdocs.pm/time_ago/TimeAgo.html#content" target="_blank"><img alt="Hex.pm" src="https://img.shields.io/hexpm/dt/time_ago"></a>
-<a href="https://hexdocs.pm/time_ago/TimeAgo.html#content" target="_blank"><img alt="Hex.pm" src="https://img.shields.io/hexpm/v/time_ago"></a>
+[![Build Status](https://travis-ci.com/pr0grammr/hotlap.svg?branch=master)](https://travis-ci.com/pr0grammr/hotlap)
+<a href="https://hexdocs.pm/Hotlap/Hotlap.html#content" target="_blank"><img alt="Hex.pm" src="https://img.shields.io/hexpm/dt/hotlap"></a>
+<a href="https://hexdocs.pm/Hotlap/Hotlap.html#content" target="_blank"><img alt="Hex.pm" src="https://img.shields.io/hexpm/v/hotlap"></a>
 
 ## Installation
 
