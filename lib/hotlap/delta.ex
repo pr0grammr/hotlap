@@ -1,4 +1,7 @@
 defmodule Hotlap.Delta do
+
+  use Hotlap.Types
+
   defstruct minutes: 0, seconds: 0, milliseconds: 0
 
 end

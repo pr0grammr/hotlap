@@ -1,24 +1,12 @@
 defmodule Hotlap.Laptime do
+
+  use Hotlap.Types
+
   @moduledoc """
   Documentation for Hotlap.
   """
 
   defstruct minutes: 0, seconds: 0, milliseconds: 0
-
-  @typedoc """
-  Hotlap.Laptime struct
-  """
-  @type laptime :: Hotlap.Laptime
-
-  @typedoc """
-  laptime string representation (e.g.: "01:22.344")
-  """
-  @type laptime_string :: String.t()
-
-  @typedoc """
-  laptime milliseconds
-  """
-  @type laptime_milliseconds :: integer
 
 
   @doc """

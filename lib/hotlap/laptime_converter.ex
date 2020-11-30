@@ -1,19 +1,11 @@
 defmodule Hotlap.LaptimeConverter do
+
+  use Hotlap.Types
+
   @moduledoc """
   converter to convert a Hotlap.Laptime struct to milliseconds
   and to convert milliseconds to a Hotlap.Laptime struct
   """
-
-  @typedoc """
-  Hotlap.Laptime struct
-  """
-  @type laptime :: Hotlap.Laptime
-
-  @typedoc """
-  Laptime in milliseconds
-  """
-  @type laptime_milliseconds :: integer
-
 
   @doc """
   Converts a laptime struct into miliseconds
